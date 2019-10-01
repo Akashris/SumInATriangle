@@ -1,51 +1,53 @@
 ﻿using System;
 
-namespace ConsoleApp2
+namespace ConsoleApp3
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            
-            int r, i, j;
-            int[,] a = new int[10, 10];
+            int row, i, j;
+            int[,] triangleArray = new int[100, 100];
             Console.WriteLine("Enter no. of rows");
-            r = int.Parse(Console.ReadLine());
+            row = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter The Values");
-            for (i = 0; i < r; i++)
+            for (i = 0; i < row; i++)
             {
                 for (j = 0; j <= i; j++)
                 {
-                    a[i,j]= int.Parse(Console.ReadLine());
-                    //Console.WriteLine(data);
-                    //a[i,j] = int.Parse(Console.ReadLine());
+                    //Getting input from the user
+                    triangleArray[i, j] = Convert.ToInt32(Console.ReadLine());
+                    
                 }
             }
-            for (i = 0; i < r; i++)
+            Console.WriteLine("\nThe Input Triangle Is: \n");
+            for (i = 0; i < row; i++)
             {
                 for (j = 0; j <= i; j++)
                 {
-                    Console.WriteLine("\n");
-                    Console.WriteLine(a[i,j]);
-                    //a[i,j] = int.Parse(Console.ReadLine());
+                    //Printing the triangle array
+                    Console.Write(triangleArray[i, j] + " ");
                 }
+                Console.WriteLine("");
             }
-            for (i = r - 2; i >= 0; i--)
+            for (i = row - 2; i >= 0; i--)
             {
                 for (j = 0; j <= i; j++)
                 {
-                    if (a[i + 1, j] > a[i + 1, j + 1])
+                    //Calculating the maximum sum in a path
+                    if (triangleArray[i + 1, j] > triangleArray[i + 1, j + 1])
                     {
-                        a[i, j] += a[i + 1, j];
+                        triangleArray[i, j] += triangleArray[i + 1, j];
                     }
                     else
                     {
-                        a[i, j] += a[i + 1, j + 1];
+                        triangleArray[i, j] += triangleArray[i + 1, j + 1];
                     }
                 }
             }
-            Console.Write("{0}",a[0,0]);
+            //Printing the maximum sum
+            Console.WriteLine("\nThe Max Sum in a Path is: \n");
+            Console.Write("{0}", triangleArray[0, 0]);
             Console.ReadLine();
         }
     }
